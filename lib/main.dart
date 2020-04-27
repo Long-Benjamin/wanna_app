@@ -1,5 +1,7 @@
 import 'package:english_words/english_words.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,17 +9,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
+
     return MaterialApp(
       title: "WANNA",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Wanna"),
-        ),
-        body: Center(
-          child: RandomWords(),
-        ),
-      ),
+      home: RandomWords(),
     );
   }
 
@@ -31,39 +26,71 @@ class RandomWords extends StatefulWidget {
 }
 
 class RandomWordsState extends State<RandomWords>{
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 16.0);
+
+  final List<String> names = ["TextView","EditText","ImageView","CardView","Button",
+    "ListView","RefreshLayout","GridView","ViewPager","LinearLayout","RelativeLayout",
+    "Dialog","Toast","onClick","onLongClick","Switch","CheckBox","RadioButton","ProgressBar",
+    "Activity LifeCycle","HttpRequest","Permission"];
+  final _biggerFont = const TextStyle(fontSize: 16.0, color: Colors.black);
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("叫什么好呢？"),
+        leading: IconButton(
+          icon: Icon(
+              Icons.menu,
+              color: Color(0xFFFFFFFF),
+          ),
+          tooltip: "menu",
+          onPressed: null,
+        ),
+        title: Text("Flutter Widget"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Color(0xFFFFFFFF),
+            ),
+            tooltip: "Search",
+            onPressed: null,
+          )
+        ],
       ),
       body: _buildSuggesttions(),
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Add",
+        child: Icon(
+          Icons.add,
+          color: Color(0xFFFFFFFF),
+        ),
+        onPressed: null,
+      ),
     );
   }
 
   Widget _buildSuggesttions(){
-    return ListView.builder(
-        padding: const EdgeInsets.all(15.0),
+
+    return ListView.separated(
+        padding: const EdgeInsets.fromLTRB(16.0, 15.0, 0.0,15.0),
         itemBuilder: (context,i){
-          if(i.isOdd) return Divider();
-          final index = i ~/ 2;
-          if(index >= _suggestions.length){
-            _suggestions.addAll(generateWordPairs().take(12));
-          }
-          return _buildRow(_suggestions[index]);
-        });
+          return _buildRow(names[i]);
+        },
+        separatorBuilder:(context,i){
+          return Divider();
+        },
+        itemCount: names.length);
   }
 
-  Widget _buildRow(WordPair suggestion) {
-    return ListTile(
-      title: Text(
-          suggestion.asPascalCase,
-          style: _biggerFont,
-      ),
+  Widget _buildRow(String name) {
+    return new FlatButton(
+       onPressed: () => Fluttertoast.showToast(msg: name),
+      child: Text(
+        name,
+        style: _biggerFont,
+        textDirection: TextDirection.ltr,),
     );
   }
+
 }
