@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'TextViewPage.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -85,12 +87,15 @@ class RandomWordsState extends State<RandomWords>{
 
   Widget _buildRow(String name) {
     return new FlatButton(
-       onPressed: () => Fluttertoast.showToast(msg: name),
+       onPressed: () => {
+         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+           return TextViewPagePage(title: name);
+         }))
+       },
       child: Text(
         name,
         style: _biggerFont,
         textDirection: TextDirection.ltr,),
     );
   }
-
 }
