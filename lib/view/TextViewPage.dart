@@ -12,6 +12,13 @@ class TextViewPagePage extends StatefulWidget {
 }
 
 class _TextViewPagePageState extends State<TextViewPagePage> {
+  Color _color =Colors.deepPurple;
+
+  void _changeTextColor() {
+    setState(() {
+      _color = Colors.grey;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +62,14 @@ class _TextViewPagePageState extends State<TextViewPagePage> {
                     TextSpan(
                       text: "点击这里",
                       style: TextStyle(
-                          color: Colors.deepPurple,
+                          color: _color,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           decorationColor: Colors.blue
                       ),
                       recognizer: TapGestureRecognizer()..onTap =() {
-                        Fluttertoast.showToast(msg: "哈哈哈，你点了这里了！");
+                        if(_color != Colors.grey)Fluttertoast.showToast(msg: "哈哈哈，你点了这里了！");
+                        _changeTextColor();
                       }
                     ),
                     TextSpan(text: "看有没有响应。")
