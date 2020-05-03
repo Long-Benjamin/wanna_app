@@ -98,7 +98,7 @@ class RandomWordsState extends State<RandomWords>{
   Widget _buildSuggesttions(){
 
     return ListView.separated(
-        padding: const EdgeInsets.fromLTRB(16.0, 15.0, 0.0,15.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 0.0, 0.0,0.0),
         itemBuilder: (context,i){
           return _buildRow(names[i]);
         },

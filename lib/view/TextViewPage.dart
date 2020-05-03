@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -28,68 +29,83 @@ class _TextViewPagePageState extends State<TextViewPagePage> {
         ),
         body: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Text("第一各页面！"),
+              Text("你好！Flutter"),
+
               Center(
-                child: GestureDetector(
-                  onTap: ()=>{
-                    _showToast("onTap")
-                  },
-                  onLongPress: ()=>{
-                    _showToast("onLongPress")
-                  },
-                  onDoubleTap: ()=>{
-                    _showToast("onDoubleTap")
-                  },
-                  child: Text("字写得的多一点嘛，再多一点既可以看一下换行的效果了,字写得的多一点嘛，再多一点既可以看一下换行的效果了哈哈哈哈哈哈a哈哈哈哈哈",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Colors.white,
-                        backgroundColor: Colors.cyan,
-                        fontSize: 16,
-                        letterSpacing: 3,
-                        fontWeight: FontWeight.w800,
-                        decorationColor: Colors.redAccent,
-                    ),
+                child: Text("床前明月光，疑是地上霜。\n举头望明月，低头思故乡。",
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Colors.white,
+                      backgroundColor: Colors.cyan,
+                      fontSize: 16,
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.w800,
+                      decorationColor: Colors.redAccent,
                   ),
+                  textDirection: TextDirection.ltr,
                 ),
               ),
+
              Container(
                 child: Text.rich(TextSpan(children: [
-                    TextSpan(text: "字写得的多一点嘛"),
+                    TextSpan(text: "你可以试着"),
                     TextSpan(
-                      text: "改一个色号",
+                      text: "点击这里",
                       style: TextStyle(
-                          color: Colors.red,
-                          backgroundColor: Colors.white,
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold,
                           fontSize: 20,
                           decorationColor: Colors.blue
                       ),
+                      recognizer: TapGestureRecognizer()..onTap =() {
+                        Fluttertoast.showToast(msg: "哈哈哈，你点了这里了！");
+                      }
                     ),
-                    TextSpan(text: "字写得的多一点嘛")
+                    TextSpan(text: "看有没有响应。")
                   ],
                 ),
                   style: TextStyle(
-                      color: Colors.white,
-                      backgroundColor: Colors.redAccent,
+                      color: Colors.deepPurple,
                       fontSize: 14,
                       decorationColor: Colors.blue
                   ),
               ),
-            )
+            ),
+
+            ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return RadialGradient(
+                  center: Alignment.center,
+                  radius: 1.0,
+                  colors: <Color>[Colors.red, Colors.yellow, Colors.blue],
+                  tileMode: TileMode.mirror,
+                ).createShader(bounds);
+              },
+              blendMode: BlendMode.srcATop,
+              child: const Text('This is a english sentence.\n换一行中文的文字试试！',
+                style: TextStyle(
+                  color: Colors.amberAccent
+                ),
+              ),
+            ),
+
+            Text(
+              '待世界抗疫胜利之时，请您一定要回到家乡，我们一起在小酒馆把酒言欢。',
+              textAlign: TextAlign.left,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: TextStyle(
+                  fontStyle: FontStyle.italic,
+              ),
+            ),
+
           ],
         ) // This trailing comma makes auto-formatting nicer for build methods.
       )
     );
   }
 
-  _showToast(String s) {
-    Fluttertoast.showToast(msg: s,
-      textColor: Colors.white,
-      backgroundColor: Colors.black87,
-        gravity: ToastGravity.TOP
-    );
-  }
 }
