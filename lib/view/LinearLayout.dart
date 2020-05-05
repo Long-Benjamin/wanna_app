@@ -65,11 +65,11 @@ class _LinearLayoutPageState extends State<LinearLayoutPage> {
                   children: <Widget>[
                     Expanded(
                       flex: 2,
-                      child: Image.asset("images/ic_jiche.jpg" ),
+                      child: Image.asset("images/ic_person.jpg" ),
                     ),
                     Expanded(
                       flex: 3,
-                      child: Image.asset("images/ic_jiche.jpg" ),
+                      child: Image.asset("images/ic_aifight.jpg" ),
                     ),
                     Expanded(
                       flex: 2,
