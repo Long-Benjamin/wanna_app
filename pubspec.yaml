@@ -44,10 +44,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/ic_danmon.jpg
-    - images/ic_prise.jpg
-    - images/ic_raw.jpg
-    - images/ic_what.jpg
+    - images/ic_aifight.jpg
+    - images/ic_jiche.jpg
+    - images/ic_person.jpg
+    - images/ic_place.jpg
+    - images/ic_qq.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -66,7 +67,7 @@ flutter:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
+  #   - family: Trajan Pr
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
