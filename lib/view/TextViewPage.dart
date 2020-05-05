@@ -110,6 +110,15 @@ class _TextViewPagePageState extends State<TextViewPagePage> {
               ),
             ),
 
+            Text(
+              '来来来，欣赏一下其他字体使用。',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontFamily: "HuaWen",
+                fontSize: 24
+              ),
+            ),
+
           ],
         ) // This trailing comma makes auto-formatting nicer for build methods.
       )
